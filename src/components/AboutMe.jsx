@@ -87,9 +87,10 @@ export default function AboutMe() {
       <img className="about-backdrop" src="/about/backdrop.jpg" alt="" aria-hidden="true" />
       {/* 하단 작은 프로필 사진 + 이름 캡션 */}
       <figure className="about-profile">
-        <img src="/about/profile.jpg" alt="프로필 사진" loading="lazy" />
+        <img src="/about/profile.png" alt="프로필 사진" loading="lazy" />
         <figcaption className="about-name">
-          <span className="about-name-text">SON WOOSUK</span>
+          <span className="about-name-text">Name: Son WooSuk</span>
+          <span className="about-name-sub">우송정보대 시각디자인과 전공</span>
         </figcaption>
       </figure>
       <p className="about-statement">
