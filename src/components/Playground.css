@@ -1,0 +1,32 @@
+/* 포트폴리오 표의 흰 배경을 그대로 이어받는 밝은 놀이 구간 */
+.playground {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background: #fff;
+  color: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.playground-hint {
+  margin: 0;
+  font-size: clamp(2.6rem, 8vw, 7rem);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(232, 53, 42, 0.8);
+  pointer-events: none;
+  user-select: none;
+}
+
+.trail-img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 15vw; /* 기본값 — 실제 폭은 스폰 시 JS에서 제각각 지정 */
+  height: auto; /* 원본 비율 유지 — 가로/세로 캡처가 섞여도 잘리지 않음 */
+  pointer-events: none;
+  will-change: transform, opacity;
+}

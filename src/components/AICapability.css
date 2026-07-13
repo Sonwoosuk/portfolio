@@ -1,0 +1,161 @@
+/* 다크 스킬 룰렛 다음, 종이 느낌의 밝은 웜톤 섹션 */
+.ai-capability {
+  position: relative;
+  overflow: hidden;
+  padding: 20vh 0 16vh;
+  background: #f1efe9;
+  color: #111;
+}
+
+/* 중앙 2줄 헤딩 — 얇은 줄 + 굵은 줄 */
+.ai-heading {
+  margin: 0 0 12vh;
+  text-align: center;
+  font-size: clamp(2rem, 4.5vw, 3.6rem);
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  line-height: 1.15;
+}
+
+.ai-heading span,
+.ai-heading strong {
+  display: block;
+}
+
+.ai-heading strong {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+/* 배경보다 한 톤 진한 초대형 단어 줄 */
+.ai-row {
+  position: relative;
+  padding: 9vh 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.14);
+  /* 노트가 행 구분선 밖으로 나가지 않게 행 안에서 잘라냄 */
+  overflow: hidden;
+}
+
+.ai-row:last-child {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.14);
+}
+
+.ai-word {
+  margin: 0;
+  text-align: center;
+  white-space: nowrap;
+  font-size: clamp(4rem, 12.5vw, 12.5rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  color: #dcd6c6;
+  will-change: transform;
+}
+
+/* AI 워크플로 노트 — 이미지 자리를 대신하는 에디토리얼 노트, 글자 위에 걸침 */
+.ai-note {
+  position: absolute;
+  top: 50%;
+  translate: 0 -50%;
+  z-index: 2;
+  width: clamp(230px, 24vw, 380px);
+  pointer-events: none;
+  will-change: transform, opacity, filter;
+}
+
+.ai-note.is-left {
+  left: 18vw;
+}
+
+.ai-note.is-right {
+  right: 18vw;
+  text-align: right;
+}
+
+.ai-note-head {
+  display: flex;
+  align-items: center;
+  gap: 0.55em;
+}
+
+.ai-note.is-right .ai-note-head {
+  justify-content: flex-end;
+}
+
+.ai-note-logo {
+  display: block;
+  width: auto;
+  height: clamp(22px, 2vw, 30px);
+}
+
+.ai-note-name {
+  font-size: clamp(0.85rem, 1vw, 1rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ai-note-role {
+  margin: 0.4em 0 0.35em;
+  font-size: clamp(1.5rem, 2.2vw, 2.1rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #e8352a;
+  word-break: keep-all;
+}
+
+.ai-note-desc {
+  margin: 0;
+  font-size: clamp(0.95rem, 1.15vw, 1.15rem);
+  font-weight: 600;
+  line-height: 1.5;
+  color: rgba(17, 17, 17, 0.82);
+  word-break: keep-all;
+}
+
+/* 스크롤 패럴랙스로 떠다니는 알약 라벨 */
+.ai-pill {
+  position: absolute;
+  z-index: 3;
+  padding: 0.75em 1.4em;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.08);
+  font-size: clamp(0.85rem, 1.15vw, 1.05rem);
+  font-weight: 600;
+  white-space: nowrap;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.ai-pill.is-accent {
+  background: #e8352a;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .ai-note {
+    width: 52vw;
+  }
+
+  .ai-note.is-left {
+    left: 10vw;
+  }
+
+  .ai-note.is-right {
+    right: 10vw;
+  }
+
+  .ai-note-logo {
+    height: 18px;
+  }
+
+  .ai-note-role {
+    font-size: 1.3rem;
+  }
+
+  .ai-note-desc {
+    font-size: 0.95rem;
+  }
+}

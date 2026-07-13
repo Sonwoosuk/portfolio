@@ -1,0 +1,42 @@
+.velocity-marquee {
+  overflow: hidden;
+  padding: 6vh 0;
+  background: #0a0a0a;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.vm-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.vm-half {
+  display: flex;
+  align-items: center;
+}
+
+.vm-item {
+  display: flex;
+  align-items: center;
+  font-size: clamp(3.5rem, 9vw, 9rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+/* 채운 글자와 아웃라인 글자가 번갈아 흐름 */
+/* 아웃라인 글자는 획이 엉키지 않게 얇은 선 + 낮은 굵기 + 넓은 자간 */
+.vm-outline {
+  color: transparent;
+  -webkit-text-stroke: 1px #fff;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.vm-star {
+  padding: 0 0.35em;
+  font-size: 0.45em;
+  color: #e8352a;
+}

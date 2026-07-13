@@ -1,0 +1,23 @@
+.stamp-title {
+  position: absolute;
+  /* 긴 섹션에서도 첫 화면 중앙에 오도록 % 대신 vh 기준 */
+  top: 50vh;
+  left: 50%;
+  translate: -50% -50%;
+  z-index: 8;
+  font-size: clamp(3.2rem, 10.5vw, 9.5rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  white-space: nowrap;
+  color: #e8352a;
+  pointer-events: none;
+  filter: drop-shadow(0 12px 34px rgba(0, 0, 0, 0.35));
+  will-change: transform, opacity;
+}
+
+.stamp-star {
+  display: inline-block;
+  margin-right: 0.22em;
+  font-size: 0.45em;
+  vertical-align: 0.35em;
+}

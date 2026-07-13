@@ -1,0 +1,50 @@
+.column-gallery {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background: #0a0a0a;
+}
+
+.column-gallery-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2vw;
+  height: 100%;
+  padding: 0 4vw;
+}
+
+.gallery-column {
+  display: flex;
+  flex-direction: column;
+  gap: 2vw;
+  width: 22%;
+  will-change: transform;
+}
+
+.gallery-column img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+
+/* 태블릿·모바일 — 컬럼 2개, 이미지 2장씩만 크게 보여줌 */
+@media (max-width: 1024px) {
+  .column-gallery-inner {
+    gap: 4vw;
+  }
+
+  .gallery-column {
+    width: 44%;
+    gap: 4vw;
+  }
+
+  .gallery-column:nth-child(n + 3) {
+    display: none;
+  }
+
+  .gallery-column img:nth-child(n + 3) {
+    display: none;
+  }
+}

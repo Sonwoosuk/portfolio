@@ -1,0 +1,101 @@
+/* 감시 인터페이스 오버레이 — 화면에 고정, 클릭 통과, 평소엔 숨김 */
+.surv-hud {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas,
+    monospace;
+}
+
+/* 흰 라인류는 difference 블렌드로 밝은 섹션에서도 보이게 반전 */
+.hud-corner {
+  mix-blend-mode: difference;
+}
+
+/* 화면 네 귀퉁이 크롭마크 */
+.hud-corner {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border: 0 solid rgba(255, 255, 255, 0.9);
+}
+
+.hud-corner.is-tl {
+  top: 18px;
+  left: 18px;
+  border-top-width: 1px;
+  border-left-width: 1px;
+}
+
+.hud-corner.is-tr {
+  top: 18px;
+  right: 18px;
+  border-top-width: 1px;
+  border-right-width: 1px;
+}
+
+.hud-corner.is-bl {
+  bottom: 18px;
+  left: 18px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+}
+
+.hud-corner.is-br {
+  bottom: 18px;
+  right: 18px;
+  border-bottom-width: 1px;
+  border-right-width: 1px;
+}
+
+/* 상단 판독 정보 — 어두운 칩 배경이라 어느 섹션에서든 판독 가능 */
+.hud-readout {
+  position: absolute;
+  left: 50%;
+  top: 6vh;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 1.2em;
+  padding: 0.6em 1.2em;
+  background: rgba(10, 10, 10, 0.6);
+  font-size: 1.15rem;
+  letter-spacing: 0.12em;
+  color: #fff;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.hud-label::after {
+  content: '_';
+  animation: hud-blink 0.7s steps(2) infinite;
+}
+
+.hud-track {
+  opacity: 0.65;
+}
+
+.hud-time {
+  color: rgba(255, 255, 255, 0.55);
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes hud-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .hud-readout {
+    font-size: 0.8rem;
+    gap: 0.8em;
+  }
+
+  .hud-time {
+    display: none;
+  }
+}

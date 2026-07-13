@@ -1,0 +1,617 @@
+/* 작품 세부 — 밝은 바탕 · 헤어라인 그리드 · 얇은 대형 타이포 (roshan-sahu 컨셉) */
+.work-detail {
+  min-height: 100vh;
+  background: #f2f1ed;
+  color: #111;
+  /* 한글이 단어 중간에서 끊기지 않도록 — 어절 단위 줄바꿈 */
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+.wd-missing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.wd-missing a {
+  color: #e8352a;
+  text-decoration: none;
+}
+
+/* 공통 모노 라벨 */
+.wd-label {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.88rem;
+  letter-spacing: 0.14em;
+  opacity: 0.6;
+}
+
+.wd-h2 {
+  margin: 0 0 3rem;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 200;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.16);
+  padding-bottom: 1.2rem;
+}
+
+/* 상단 바 */
+.wd-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 2rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  background: rgba(242, 241, 237, 0.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.wd-top a {
+  color: #111;
+  text-decoration: none;
+}
+
+.wd-top a:hover {
+  color: #e8352a;
+}
+
+/* 상단 실사이트 이동 버튼 — 항상 잘 보이는 레드 필 */
+.wd-top a.wd-visit {
+  padding: 0.6em 1.2em;
+  background: #e8352a;
+  color: #fff;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.wd-top a.wd-visit:hover {
+  background: #0a0a0a;
+  color: #fff;
+}
+
+.wd-top-label {
+  color: #111;
+  opacity: 0.9;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0 1rem;
+}
+
+/* 인트로 */
+.wd-intro {
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 4vw;
+  align-items: center;
+  min-height: 100vh;
+  padding: 12vh 4vw 8vh;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.wd-intro-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+/* 초대형 타이틀 — 상단 전체 폭을 차지하고, 아래 콘텐츠가 하단을 살짝 덮으며 올라옴 */
+.wd-title {
+  grid-column: 1 / -1;
+  position: relative;
+  z-index: -1;
+  margin: 0 0 -0.18em;
+  /* 타이틀이 화면을 다 차지하지 않도록 축소 — 인트로 전체가 100vh 안에 보이게 */
+  font-size: clamp(2.6rem, 6.5vw, 7.5rem);
+  font-weight: 200;
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: rgba(17, 17, 17, 0.88);
+  overflow-wrap: break-word;
+}
+
+.wd-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.wd-tags li {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.84rem;
+  letter-spacing: 0.1em;
+  padding: 0.35em 0.8em;
+  border: 1px solid rgba(0, 0, 0, 0.28);
+  border-radius: 999px;
+}
+
+/* 카카오맵 API 연동 강조 — 레드 필로 부각 */
+.wd-tags li.wd-tag-featured {
+  background: #e8352a;
+  border-color: #e8352a;
+  color: #fff;
+  font-weight: 700;
+}
+
+.wd-desc {
+  margin: 0;
+  max-width: 34em;
+  font-size: 1.34rem;
+  line-height: 1.8;
+  color: rgba(17, 17, 17, 0.85);
+}
+
+.wd-pending {
+  margin: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.92rem;
+  letter-spacing: 0.12em;
+  color: #e8352a;
+}
+
+.wd-overview {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin: 0.6rem 0 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.14);
+  padding-top: 1.2rem;
+}
+
+.wd-overview div {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 1rem;
+}
+
+.wd-overview dt {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  opacity: 0.55;
+  padding-top: 0.2em;
+}
+
+.wd-overview dd {
+  margin: 0;
+  font-size: 1.22rem;
+  line-height: 1.7;
+}
+
+/* 인트로의 실사이트 링크 — 첫 화면에서부터 진입점이 명확하게 */
+.wd-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: 0.4rem;
+}
+
+.wd-link-live,
+.wd-link-git {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.94rem;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 0.85em 1.5em;
+}
+
+.wd-link-live {
+  background: #e8352a;
+  color: #fff;
+}
+
+.wd-link-live:hover {
+  background: #0a0a0a;
+}
+
+.wd-link-git {
+  border: 1px solid rgba(0, 0, 0, 0.35);
+  color: #111;
+}
+
+.wd-link-git:hover {
+  border-color: #e8352a;
+  color: #e8352a;
+}
+
+/* 인트로 스냅샷 */
+.wd-snap {
+  margin: 0;
+  will-change: transform;
+}
+
+.wd-snap img {
+  width: 100%;
+  display: block;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.18);
+}
+
+.wd-snap figcaption {
+  margin-top: 0.7rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  opacity: 0.55;
+  text-align: right;
+}
+
+/* 메타 */
+.wd-meta {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  padding: 5rem 4vw;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.wd-meta p {
+  margin: 0.7rem 0 0;
+  font-size: 1.2rem;
+  line-height: 1.7;
+}
+
+/* 핵심 구현 */
+.wd-highlights {
+  padding: 9rem 4vw;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.wd-highlight {
+  display: grid;
+  grid-template-columns: 60px minmax(0, 0.6fr) minmax(0, 1fr);
+  gap: 2rem;
+  align-items: baseline;
+  padding: 2.2rem 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.14);
+}
+
+.wd-highlight h3 {
+  margin: 0;
+  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  font-weight: 600;
+}
+
+.wd-highlight p {
+  margin: 0;
+  font-size: 1.24rem;
+  line-height: 1.72;
+  color: rgba(17, 17, 17, 0.8);
+}
+
+/* 기능 캡처 */
+.wd-features {
+  padding: 9rem 4vw;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+/* 기능 캡처를 한 줄에 하나씩 크게 — 각 GIF를 충분히 보고 넘어갈 수 있게 */
+.wd-feature-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 7rem;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.wd-feature {
+  margin: 0;
+}
+
+.wd-feature img {
+  width: 100%;
+  display: block;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  background: #fff;
+  /* 로드 전에도 자리를 미리 확보 — 늦게 뜨는 GIF 때문에 레이아웃이 밀려
+     피날레 핀 위치가 어긋나는 문제 방지 (로드 후엔 원본 비율 사용) */
+  aspect-ratio: auto 16 / 10;
+}
+
+.wd-feature figcaption {
+  margin-top: 0.8rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.86rem;
+  letter-spacing: 0.11em;
+  opacity: 0.65;
+}
+
+/* 릴스 */
+.wd-reels {
+  padding: 9rem 4vw;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.wd-reel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 3rem;
+}
+
+.wd-reel-grid video {
+  width: 100%;
+  display: block;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+}
+
+/* 풀페이지 자동 스크롤 — 브라우저 프레임 안에서 사이트 전체가 흘러감 */
+.wd-scrollcast {
+  padding: 9rem 4vw 4rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.wd-browser {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background: #fff;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.14);
+}
+
+.wd-browser-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.wd-browser-bar i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.wd-browser-bar i:first-child {
+  background: #e8352a;
+}
+
+.wd-browser-bar span {
+  margin-left: 0.8rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  opacity: 0.6;
+}
+
+.wd-browser-view {
+  height: 72vh;
+  overflow: hidden;
+}
+
+.wd-browser-view img {
+  width: 100%;
+  display: block;
+  /* 풀페이지 캡처가 위→아래로 천천히 훑고 다시 올라옴 — 스크롤 영상 느낌.
+     섹션이 화면에 들어오기 전에는 정지 — 도착했을 때 처음부터 보이게 */
+  animation: wd-scrollcast 26s ease-in-out infinite alternate;
+  animation-play-state: paused;
+}
+
+.wd-scrollcast.is-cast .wd-browser-view img {
+  animation-play-state: running;
+}
+
+@keyframes wd-scrollcast {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(calc(-100% + 72vh));
+  }
+}
+
+/* 피날레 — 스크롤로 커지다 화면을 채우면 라이브 사이트 활성화 */
+.wd-finale {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background: #0a0a0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wd-finale-frame {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  will-change: transform;
+  background: #fff;
+}
+
+.wd-finale-shot {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.6s ease;
+}
+
+.wd-finale-live {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+
+/* 화면을 다 채우면 스냅샷이 걷히고 진짜 사이트가 그대로 이어짐 */
+.wd-finale.is-live .wd-finale-live {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.wd-finale.is-live .wd-finale-shot {
+  opacity: 0;
+}
+
+/* 실제 사이트로 이동하는 메인 CTA — 하단 중앙, 라이브 상태에서 크게 펄스 */
+.wd-finale-open {
+  position: absolute;
+  bottom: 2.6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 1.12rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 1em 2.2em;
+  background: #e8352a;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 999px;
+  box-shadow: 0 14px 40px rgba(232, 53, 42, 0.45);
+  white-space: nowrap;
+}
+
+.wd-finale-open:hover {
+  background: #0a0a0a;
+}
+
+.wd-finale.is-live .wd-finale-open {
+  animation: wd-cta-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes wd-cta-pulse {
+  0%,
+  100% {
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    transform: translateX(-50%) scale(1.07);
+  }
+}
+
+.wd-finale-hint {
+  position: absolute;
+  bottom: 1.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.7);
+  mix-blend-mode: difference;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.wd-finale.is-live .wd-finale-hint {
+  opacity: 0;
+}
+
+/* 다음 작품 */
+.wd-next {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  align-items: flex-start;
+  padding: 10rem 4vw 8rem;
+  background: #0a0a0a;
+  color: #fff;
+}
+
+.wd-next-title {
+  font-size: clamp(2.2rem, 6vw, 5.4rem);
+  font-weight: 200;
+  letter-spacing: 0.01em;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.wd-next-title:hover {
+  color: #e8352a;
+}
+
+.wd-next-index {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.88rem;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: none;
+}
+
+.wd-next-index:hover {
+  color: #fff;
+}
+
+@media (max-width: 900px) {
+  .wd-intro {
+    grid-template-columns: 1fr;
+    padding-top: 16vh;
+  }
+
+  .wd-title {
+    margin-bottom: 0.2em;
+    font-size: clamp(3rem, 16vw, 7rem);
+  }
+
+  .wd-meta {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .wd-highlight {
+    grid-template-columns: 44px 1fr;
+  }
+
+  .wd-highlight p {
+    grid-column: 2;
+  }
+
+  .wd-feature-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 폰 — 본문 행간·간격을 화면에 맞게 조정 */
+@media (max-width: 560px) {
+  .wd-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .wd-desc {
+    font-size: 1.08rem;
+    line-height: 1.75;
+  }
+
+  .wd-feature-grid {
+    gap: 4rem;
+  }
+
+  .wd-highlight p {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .wd-h2 {
+    font-size: 1.9rem;
+  }
+}

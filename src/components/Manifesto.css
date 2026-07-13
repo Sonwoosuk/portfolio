@@ -1,0 +1,52 @@
+/* 어두운 섹션 사이에서 터지는 레드 선언 구간 */
+.manifesto {
+  position: relative;
+  background: #e8352a;
+  color: #fff;
+  padding: 24vh 4vw;
+  overflow: hidden;
+}
+
+.manifesto .section-label {
+  opacity: 0.7;
+}
+
+.manifesto-line {
+  margin: 0;
+  font-family: 'The Wildeast', Pretendard, sans-serif;
+  font-size: clamp(3rem, 10vw, 9rem);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: 0;
+  white-space: nowrap;
+  cursor: default;
+  will-change: transform;
+}
+
+.manifesto-line:nth-of-type(even) {
+  text-align: right;
+}
+
+.m-letter {
+  display: inline-block;
+}
+
+/* 호버하면 글자가 두 겹으로 벌어짐: KEEP → KKEEEEPP (ilcapo의 더블링) */
+.m-letter::after {
+  content: attr(data-char);
+  display: inline-block;
+  max-width: 0;
+  overflow: hidden;
+  vertical-align: bottom;
+  opacity: 0.35;
+  transition: max-width 0.35s ease var(--d, 0s);
+}
+
+.manifesto-line:hover .m-letter::after {
+  max-width: 1.2ch;
+}
+
+.m-space {
+  display: inline-block;
+  width: 0.35em;
+}

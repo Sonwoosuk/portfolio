@@ -1,0 +1,101 @@
+.portfolio-list {
+  display: flex;
+  align-items: center;
+  gap: 4vw;
+  min-height: 100vh;
+  padding: 12vh 4vw;
+  background: #0a0a0a;
+  color: #fff;
+}
+
+.portfolio-rows {
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.portfolio-rows li {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.6rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.portfolio-rows li:last-child {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.row-index {
+  font-size: 0.85rem;
+  opacity: 0.45;
+}
+
+.row-title {
+  font-size: clamp(1.4rem, 3vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  transition: opacity 0.2s;
+}
+
+/* 호버 시 정지된 제목 대신 흐르는 텍스트로 교체 */
+.row-marquee {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.row-marquee span {
+  display: inline-block;
+  font-size: clamp(1.4rem, 3vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  animation: row-marquee-scroll 14s linear infinite;
+}
+
+.portfolio-rows li:hover .row-title,
+.portfolio-rows li:hover .row-index {
+  opacity: 0;
+}
+
+.portfolio-rows li:hover .row-marquee {
+  opacity: 1;
+}
+
+@keyframes row-marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.portfolio-preview {
+  position: relative;
+  flex: 0 0 42%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+.portfolio-preview img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+
+.portfolio-preview img.is-visible {
+  opacity: 1;
+}

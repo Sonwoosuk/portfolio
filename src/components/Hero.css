@@ -1,0 +1,40 @@
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: #fff;
+}
+
+.hero .gallery-scene {
+  position: absolute;
+  inset: 0;
+}
+
+.hero .metaballs-container {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-fade {
+  position: absolute;
+  inset: 0;
+  background: #0a0a0a;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hero-headline {
+  position: absolute;
+  left: 4vw;
+  bottom: 6vh;
+  margin: 0;
+  font-size: clamp(2.2rem, 6vw, 5.5rem);
+  font-weight: 800;
+  line-height: 1.03;
+  letter-spacing: -0.03em;
+  color: #fff;
+  mix-blend-mode: difference;
+  pointer-events: none;
+  user-select: none;
+}

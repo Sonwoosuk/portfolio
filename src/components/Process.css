@@ -1,0 +1,79 @@
+/* 어두운 섹션들 사이에서 호흡을 바꾸는 밝은 섹션 */
+.process {
+  position: relative;
+  background: #fff;
+  color: #111;
+  padding: 22vh 4vw;
+}
+
+.process-rows {
+  position: relative;
+  z-index: 1;
+  max-width: 100%;
+}
+
+/* 첫 행 위에 살짝 걸치는 스티커 */
+.process .rotating-badge {
+  top: 9vh;
+  right: 7vw;
+  rotate: 8deg;
+}
+
+.process-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 3.2rem 0.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  will-change: clip-path;
+}
+
+.process-row:last-child {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.process-text {
+  display: flex;
+  align-items: baseline;
+  gap: 2.4rem;
+  min-width: 0;
+  transition: transform 0.4s ease;
+}
+
+.process-row h3 {
+  margin: 0;
+  font-size: clamp(2.4rem, 6vw, 5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  transition: transform 0.4s ease, color 0.4s ease;
+}
+
+.process-desc {
+  margin: 0;
+  font-size: clamp(0.85rem, 1.2vw, 1.05rem);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+}
+
+.process-num {
+  font-size: clamp(2.4rem, 6vw, 5rem);
+  font-weight: 800;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(232, 53, 42, 0.7);
+  transition: color 0.4s ease;
+  will-change: transform, opacity;
+}
+
+/* 호버 시 제목이 밀리며 레드로, 아웃라인 번호는 꽉 찬 레드로 */
+.process-row:hover h3 {
+  transform: translateX(1.2rem);
+  color: #e8352a;
+}
+
+.process-row:hover .process-num {
+  color: #e8352a;
+}

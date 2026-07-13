@@ -1,0 +1,232 @@
+:root {
+  --sidebar-w: 48px;
+}
+
+/* 화면 왼쪽에 붙는 좁은 세로 바 — 로고(위) / 점 메뉴(중앙) / CTA(아래) */
+.side-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 9985;
+  width: var(--sidebar-w);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 0 1.4rem;
+  background: #0a0a0a;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.side-header button {
+  border: 0;
+  padding: 0;
+  background: none;
+  color: #fff;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.side-logo {
+  font-size: 1.3rem;
+  line-height: 1;
+  color: #e8352a;
+  transition: rotate 0.5s ease;
+}
+
+.side-logo:hover {
+  rotate: 90deg;
+}
+
+/* 세로 점 3개 — 열리면 가운데 점이 사라지고 X로 */
+.side-menu-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 10px;
+}
+
+.side-menu-btn i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+.side-menu-btn:hover i {
+  background: #e8352a;
+}
+
+.side-menu-btn.is-open i:nth-child(1) {
+  transform: translateY(10px) scaleY(3.2) rotate(45deg);
+  border-radius: 2px;
+}
+
+.side-menu-btn.is-open i:nth-child(2) {
+  opacity: 0;
+}
+
+.side-menu-btn.is-open i:nth-child(3) {
+  transform: translateY(-10px) scaleY(3.2) rotate(-45deg);
+  border-radius: 2px;
+}
+
+/* 아래에서 위로 읽는 세로 CTA */
+.side-cta {
+  writing-mode: vertical-rl;
+  rotate: 180deg;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  transition: color 0.3s ease;
+}
+
+.side-cta::after {
+  content: '';
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  margin-top: 0.8em;
+  border-radius: 50%;
+  background: #e8352a;
+}
+
+.side-cta:hover {
+  color: #e8352a;
+}
+
+/* 전체 화면 메뉴 오버레이 */
+.side-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9980;
+  display: flex;
+  align-items: center;
+  background: rgba(10, 10, 10, 0.97);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.45s ease, visibility 0s linear 0.45s;
+}
+
+.side-overlay.is-open {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.45s ease;
+}
+
+.side-overlay ul {
+  margin: 0;
+  padding: 0 0 0 calc(var(--sidebar-w) + 6vw);
+  list-style: none;
+}
+
+.side-overlay li {
+  opacity: 0;
+  transform: translateY(1.2em);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.side-overlay.is-open li {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 스킬 룰렛과 같은 아웃라인 → 호버 시 레드 채움 */
+.side-overlay li button {
+  display: flex;
+  align-items: baseline;
+  gap: 1.2rem;
+  border: 0;
+  padding: 0.12em 0;
+  background: none;
+  cursor: pointer;
+  /* 외곽선 글자는 정적 프리텐다드 — 가변 폰트는 획 겹침으로 이중선이 생김 */
+  font-family: Pretendard, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: clamp(2.2rem, 6.5vh, 4.2rem);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1.1;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.5);
+  transition: color 0.25s ease, -webkit-text-stroke-color 0.25s ease;
+}
+
+.side-overlay li button:hover {
+  color: #e8352a;
+  -webkit-text-stroke-color: transparent;
+}
+
+.menu-index {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.4);
+  -webkit-text-stroke: 0;
+}
+
+/* 모바일 — 세로 바 대신 우상단 플로팅 햄버거 메뉴 */
+@media (max-width: 768px) {
+  :root {
+    --sidebar-w: 0px;
+  }
+
+  .side-header {
+    top: 0.9rem;
+    right: 0.9rem;
+    left: auto;
+    bottom: auto;
+    width: auto;
+    flex-direction: row;
+    gap: 0.6rem;
+    padding: 0;
+    background: none;
+    border-right: 0;
+  }
+
+  /* 흰 배경 섹션 위에서도 보이도록 어두운 원 배경 — .side-header button 규칙보다 우선 */
+  .side-header .side-logo {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(10, 10, 10, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+  }
+
+  /* 점 3개 → 가로 막대 3개 햄버거 */
+  .side-header .side-menu-btn {
+    width: 44px;
+    height: 44px;
+    justify-content: center;
+    gap: 4px;
+    background: rgba(10, 10, 10, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    padding: 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+  }
+
+  .side-menu-btn i {
+    width: 16px;
+    height: 2px;
+    border-radius: 2px;
+  }
+
+  .side-menu-btn.is-open i:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+  }
+
+  .side-menu-btn.is-open i:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  .side-cta {
+    display: none;
+  }
+}

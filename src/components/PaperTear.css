@@ -1,0 +1,113 @@
+/* 오른쪽 가장자리에 붙은 좁은 종이 띠 — 실사 페이퍼 콜라주 */
+.paper-tear {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 52px;
+  z-index: 950;
+}
+
+/* 필터 정의용 — 화면에 그리지 않음 */
+.tear-defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.tear-hit {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+/* 뜯어진 안쪽 면 — 포인트 레드, 미세한 종이 결 */
+.tear-inside {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to left, #c22318, #e8352a 55%);
+}
+
+.tear-inside::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* 안쪽 면에 세로로 떠 있는 질문 */
+.tear-ask {
+  position: absolute;
+  left: 50%;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.18em;
+  transform: translate(-50%, -50%);
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas,
+    monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+
+.tear-ask i {
+  font-style: normal;
+}
+
+/* 다가가면(호버) 질문이 또렷하게 떠오름 */
+.tear-hit:hover .tear-ask {
+  opacity: 1;
+}
+
+/* 필터(변위+조명)는 래퍼에 — 자식의 찢긴 단면을 섬유처럼 뜯고 표면 질감을 입힘.
+   그림자도 뜯긴 최종 모양 그대로 떨어짐 */
+.tear-cast {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.tear-cast.is-mid {
+  filter: url(#paperRealMid) drop-shadow(0 -1px 2px rgba(0, 0, 0, 0.2));
+}
+
+.tear-cast.is-front {
+  filter: url(#paperRealFront) drop-shadow(0 -2px 3px rgba(0, 0, 0, 0.25))
+    drop-shadow(0 -7px 14px rgba(0, 0, 0, 0.13));
+}
+
+.tear-paper {
+  position: absolute;
+  inset: 0;
+}
+
+/* 흰 속지 */
+.tear-mid {
+  background: #fbfaf7;
+}
+
+/* 아이보리 앞장 */
+.tear-front {
+  background: #efede6;
+  box-shadow: inset 1.5px 0 0 rgba(17, 17, 17, 0.1);
+}
+
+/* 모바일 — 종이 띠는 좁은 화면을 잡아먹어 아예 숨김 */
+@media (max-width: 768px) {
+  .paper-tear {
+    display: none;
+  }
+}

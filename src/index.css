@@ -1,0 +1,76 @@
+/* 디스플레이 악센트 폰트 — 강조 단어 한 곳에만 포인트로 사용 */
+@font-face {
+  font-family: 'The Wildeast';
+  src: url('/fonts/TheWildeast.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 한글 손글씨 폰트 '하루 일기' — 한글 텍스트에만 사용 */
+@font-face {
+  font-family: 'Daynote Jellypen';
+  src: url('/fonts/DaynoteJellypen-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Daynote Jellypen';
+  src: url('/fonts/DaynoteJellypen-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Pretendard Variable', Pretendard, -apple-system, 'Segoe UI',
+    Roboto, sans-serif;
+  background: #fff;
+  color: #111;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 외곽선(text-stroke) 글자는 정적 프리텐다드 사용 —
+   가변 폰트는 글리프 내부 획이 겹쳐 있어 외곽선이 글자 안에서 이중선으로 엉킴 */
+.vm-outline,
+.skills-list li,
+.process-num,
+.service-num,
+.side-overlay li button,
+.playground-hint {
+  font-family: Pretendard, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* 섹션 좌상단 공통 라벨 — [ ABOUT ME ] 브래킷 표기 (serotonin 참고) */
+.section-label {
+  position: absolute;
+  top: 5vh;
+  /* 왼쪽 고정 헤더 바에 가리지 않도록 바 폭만큼 밀어냄 */
+  left: calc(var(--sidebar-w, 0px) + 2vw);
+  z-index: 5;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.section-label::before {
+  content: '[ ';
+}
+
+.section-label::after {
+  content: ' ]';
+}

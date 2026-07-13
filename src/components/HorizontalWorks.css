@@ -1,0 +1,77 @@
+.horizontal-works {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background: #0a0a0a;
+  color: #fff;
+}
+
+/* 뒤에 깔리는 초대형 아웃라인 텍스트 */
+.hw-bigtext {
+  position: absolute;
+  top: 50%;
+  left: 4vw;
+  transform: translateY(-50%);
+  font-family: 'The Wildeast', Pretendard, sans-serif;
+  font-size: 20vw;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.16);
+  pointer-events: none;
+  will-change: transform;
+}
+
+.hw-track {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6vw;
+  width: max-content;
+  height: 100%;
+  padding: 0 10vw;
+  will-change: transform;
+}
+
+/* 패널 폭을 이미지 원본 비율에 맞춰 캡처가 잘리지 않게 통째로 보여줌 */
+.hw-panel {
+  position: relative;
+  flex: none;
+  width: auto;
+  height: 62vh;
+  margin: 0;
+  overflow: hidden;
+}
+
+/* 홀짝으로 크기·높낮이를 다르게 해 리듬감 */
+.hw-panel:nth-child(even) {
+  height: 46vh;
+  margin-top: 14vh;
+}
+
+.hw-panel img {
+  display: block;
+  width: auto;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* 호버 시 교체되는 대체 컷 — 세로 이미지도 잘리지 않게 contain */
+.hw-panel .hw-alt {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin-left: 0;
+  object-fit: contain;
+  background: #0a0a0a;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.hw-panel:hover .hw-alt {
+  opacity: 1;
+}
+
