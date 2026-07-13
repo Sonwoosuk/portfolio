@@ -66,7 +66,7 @@ export const WORKS = [
     design:
       'https://www.figma.com/design/Zx3emy4MkmigNbELYRtJje/%EC%9D%BC%EC%B2%B4%ED%98%95%ED%8E%98%EC%9D%B4%EC%A7%80%EB%94%94%EC%9E%90%EC%9D%B8_%EC%86%90%EC%9A%B0%EC%84%9D?node-id=0-1',
     intro:
-      'React + Vite로 제작한 자연 영감 주얼리 브랜드 GYEOL(결)의 이커머스 웹앱입니다. Water / Earth / Forest / Light 4개의 자연 테마 컬렉션을 GSAP · Motion 인터랙션으로 표현하고, Firebase 인증과 Polar 결제를 연동해 실제 쇼핑몰 수준의 구매 흐름을 구현했습니다.',
+      'React + Vite로 제작한 자연 영감 주얼리 브랜드 GYEOL(결)의 이커머스 일체형 페이지입니다. Water / Earth / Forest / Light 4개의 자연 테마 컬렉션을 GSAP · Motion 인터랙션으로 표현하고, Firebase 인증과 Polar 결제를 연동해 실제 쇼핑몰 수준의 구매 흐름을 구현했습니다.',
     overview: [
       { k: 'GOAL', v: '브랜드 감성과 실제 구매 흐름(장바구니 → 결제)을 모두 갖춘 이커머스 구현' },
       { k: 'TARGET', v: '자연주의 감성의 주얼리에 관심 있는 2030 고객' },
