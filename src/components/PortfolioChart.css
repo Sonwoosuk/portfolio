@@ -184,6 +184,11 @@
   will-change: transform;
 }
 
+/* 모바일 전용 섹션 제목 — 데스크톱에선 숨김 */
+.chart-title {
+  display: none;
+}
+
 /* 태블릿·모바일 — 미리보기를 위로 올리고 표는 아래에 세로로 */
 @media (max-width: 1024px) {
   .chart-inner {
@@ -211,6 +216,38 @@
 
   /* 좁은 화면에서는 태그를 숨겨 제목이 줄바꿈 없이 읽히게 */
   .row-tags {
+    display: none;
+  }
+}
+
+/* 모바일 — 핀 없이 완성된 표 그대로, 제목 표시 */
+@media (max-width: 768px) {
+  .portfolio-chart {
+    height: auto;
+    min-height: 100svh;
+  }
+
+  .chart-inner {
+    height: auto;
+    gap: 3vh;
+    padding: 12vh 6vw 10vh;
+  }
+
+  .chart-title {
+    display: block;
+    order: -2;
+    margin: 0;
+    font-size: clamp(1.6rem, 7.5vw, 2.2rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  /* 호버가 없으니 모든 행을 또렷하게 */
+  .is-assembled .portfolio-rows li {
+    opacity: 1;
+  }
+
+  .row-marquee {
     display: none;
   }
 }

@@ -135,16 +135,32 @@
 }
 
 @media (max-width: 768px) {
-  .ai-note {
-    width: 52vw;
+  .ai-capability {
+    padding: 12vh 0 10vh;
   }
 
-  .ai-note.is-left {
-    left: 10vw;
+  .ai-heading {
+    margin-bottom: 7vh;
+  }
+
+  .ai-row {
+    padding: 5vh 0 6vh;
+  }
+
+  /* 노트를 글자 위 겹침에서 빼서 단어 아래 자기 자리로 — 텍스트 겹침 방지 */
+  .ai-note {
+    position: static;
+    translate: none;
+    width: auto;
+    margin: 1.6rem 7vw 0;
   }
 
   .ai-note.is-right {
-    right: 10vw;
+    text-align: left;
+  }
+
+  .ai-note.is-right .ai-note-head {
+    justify-content: flex-start;
   }
 
   .ai-note-logo {
@@ -157,5 +173,18 @@
 
   .ai-note-desc {
     font-size: 0.95rem;
+  }
+
+  /* 좁은 화면에서는 강제 줄바꿈 대신 어절 단위 자연 줄바꿈 */
+  .ai-note-desc br {
+    display: none;
+  }
+
+  /* 알약 — 화면 안쪽 좌표로 재배치해 잘리지 않게 (인라인 좌표를 덮어씀) */
+  .ai-pill {
+    top: var(--m-top) !important;
+    left: var(--m-left) !important;
+    font-size: 0.78rem;
+    padding: 0.6em 1.1em;
   }
 }

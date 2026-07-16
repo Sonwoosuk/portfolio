@@ -114,28 +114,46 @@
   color: #e8352a;
 }
 
-@media (max-width: 720px) {
+/* 모바일 — 핀 없이 문장과 프로필을 위아래로 쌓는 심플 레이아웃 */
+@media (max-width: 768px) {
+  .about-me {
+    height: auto;
+    min-height: 100svh;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 8vh;
+    padding: 16vh 8vw 12vh;
+  }
+
   .about-backdrop {
     width: 68%;
     right: -10%;
     opacity: 0.22;
   }
 
-  .about-profile {
-    left: 6vw;
-    bottom: 5vh;
-    width: clamp(76px, 22vw, 110px);
-  }
-}
-
-/* 아주 좁은 화면 — 한 줄 고정이 넘치면 어절 단위로 자연스럽게 줄바꿈 */
-@media (max-width: 520px) {
   .about-statement {
-    max-width: 88vw;
-    font-size: clamp(1.4rem, 6.2vw, 2.4rem);
+    max-width: 100%;
+    text-align: left;
+    font-size: clamp(1.5rem, 6.4vw, 2.4rem);
   }
 
+  /* 한 줄 고정을 풀고 어절 단위로 자연스럽게 줄바꿈 */
   .about-line {
     white-space: normal;
+  }
+
+  /* 프로필 — 절대배치 대신 문장 아래 자기 자리 (겹침 없음) */
+  .about-profile {
+    position: static;
+    width: clamp(130px, 40vw, 190px);
+  }
+
+  .about-name {
+    font-size: 0.9rem;
+  }
+
+  .about-name-sub {
+    font-size: 0.8rem;
   }
 }

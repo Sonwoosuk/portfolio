@@ -52,3 +52,11 @@
   color: #e8352a;
   -webkit-text-stroke-color: transparent;
 }
+
+/* 모바일 — 긴 항목(Visual Studio Code 등)이 화면 밖으로 잘리지 않게 */
+@media (max-width: 768px) {
+  .skills-list li {
+    font-size: clamp(1.5rem, 7vw, 2.6rem);
+    line-height: 1.6;
+  }
+}

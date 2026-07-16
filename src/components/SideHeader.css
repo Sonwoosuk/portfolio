@@ -44,8 +44,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 5px;
-  padding: 10px;
+  /* 클릭 범위 — 사이드바 전체 폭 × 넉넉한 높이 */
+  width: var(--sidebar-w);
+  height: 72px;
 }
 
 .side-menu-btn i {

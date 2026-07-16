@@ -18,10 +18,12 @@ export default function HorizontalWorks() {
     const track = trackRef.current
     if (!section || !track) return
 
-    const ctx = gsap.context(() => {
+    const mm = gsap.matchMedia(section)
+
+    // 데스크톱 — 세로 스크롤을 가로 이동으로 변환해 트랙 전체를 통과
+    mm.add('(min-width: 769px)', () => {
       const getScroll = () => track.scrollWidth - window.innerWidth
 
-      // 세로 스크롤을 가로 이동으로 변환해 트랙 전체를 통과
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
@@ -35,10 +37,26 @@ export default function HorizontalWorks() {
       tl.to(track, { x: () => -getScroll(), ease: 'none' }, 0)
         // 거대 배경 텍스트는 절반 속도로 따라와 깊이감이 생김
         .to(bigTextRef.current, { x: () => -getScroll() * 0.45, ease: 'none' }, 0)
+    })
 
-    }, section)
+    // 모바일 — 가로 슬라이드 없이 세로 스택, 패널마다 심플 페이드만
+    mm.add('(max-width: 768px)', () => {
+      gsap.utils.toArray('.hw-panel').forEach((panel) => {
+        gsap.fromTo(
+          panel,
+          { autoAlpha: 0, y: 28 },
+          {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.8,
+            ease: 'power2.out',
+            scrollTrigger: { trigger: panel, start: 'top 88%' },
+          },
+        )
+      })
+    })
 
-    return () => ctx.revert()
+    return () => mm.revert()
   }, [])
 
   return (

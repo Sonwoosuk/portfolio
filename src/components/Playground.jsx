@@ -43,8 +43,11 @@ export default function Playground() {
       section.appendChild(img)
       // 크기를 일부러 통일하지 않음 — 원본 비율 그대로, 폭만 제각각
       // 가로형 사이트 캡처(/works/)는 세로형 인스타 콘텐츠보다 크게
+      // 모바일에서는 화면이 좁은 만큼 vw 기준을 키워 비슷한 체감 크기로
       const isWide = src.includes('/works/')
-      img.style.width = `${gsap.utils.random(isWide ? 20 : 10, isWide ? 30 : 16)}vw`
+      const mobile = window.innerWidth <= 768
+      const [min, max] = isWide ? (mobile ? [38, 54] : [20, 30]) : (mobile ? [20, 30] : [10, 16])
+      img.style.width = `${gsap.utils.random(min, max)}vw`
       gsap.set(img, {
         x,
         y,
@@ -78,16 +81,31 @@ export default function Playground() {
       }
     }
 
-    section.addEventListener('mousemove', move)
+    // 터치 — 탭한 자리에서 바로 이미지가 튀어나옴
+    const down = (e) => {
+      const r = section.getBoundingClientRect()
+      const x = e.clientX - r.left
+      const y = e.clientY - r.top
+      last = { x, y }
+      spawn(x, y)
+    }
+
+    section.addEventListener('pointermove', move)
+    section.addEventListener('pointerdown', down)
     return () => {
-      section.removeEventListener('mousemove', move)
+      section.removeEventListener('pointermove', move)
+      section.removeEventListener('pointerdown', down)
       section.querySelectorAll('.trail-img').forEach((el) => el.remove())
     }
   }, [])
 
+  const isTouch =
+    typeof window !== 'undefined' &&
+    window.matchMedia('(hover: none), (pointer: coarse)').matches
+
   return (
     <section ref={sectionRef} className="playground">
-      <h2 className="playground-hint">MOVE YOUR MOUSE</h2>
+      <h2 className="playground-hint">{isTouch ? 'TAP THE SCREEN' : 'MOVE YOUR MOUSE'}</h2>
     </section>
   )
 }

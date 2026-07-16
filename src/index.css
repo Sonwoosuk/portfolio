@@ -31,6 +31,8 @@ html,
 body {
   margin: 0;
   padding: 0;
+  /* 모바일에서 절대배치 요소가 삐져나와도 가로 스크롤이 생기지 않게 */
+  overflow-x: clip;
 }
 
 body {
@@ -40,6 +42,9 @@ body {
   color: #111;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* 한글이 어절 중간에서 끊기지 않도록 전역 적용 */
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 /* 외곽선(text-stroke) 글자는 정적 프리텐다드 사용 —

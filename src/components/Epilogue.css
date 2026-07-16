@@ -39,6 +39,14 @@
   will-change: transform;
 }
 
+/* 헤드라인 아래 한글 멘트 */
+.epilogue-ko {
+  margin: 0 0 0.8vh;
+  font-size: clamp(1.1rem, 2vw, 1.55rem);
+  font-weight: 600;
+  word-break: keep-all;
+}
+
 .epilogue-line {
   margin: 0 0 8vh;
   font-size: clamp(1rem, 1.6vw, 1.3rem);
@@ -88,4 +96,27 @@
   font-size: clamp(1.4rem, 3vw, 2.6rem);
   font-weight: 700;
   letter-spacing: -0.02em;
+}
+
+/* 모바일 — 라벨/값 세로 배치로 이메일 등 긴 값이 잘리지 않게 */
+@media (max-width: 768px) {
+  .epilogue-inner {
+    padding: 12vh 6vw 10vh;
+  }
+
+  .epilogue-line {
+    margin-bottom: 5vh;
+  }
+
+  .epilogue-contact a {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.45rem;
+    padding: 1.2rem 0.2rem;
+  }
+
+  .contact-value {
+    font-size: clamp(1.15rem, 5.6vw, 1.5rem);
+    overflow-wrap: anywhere;
+  }
 }

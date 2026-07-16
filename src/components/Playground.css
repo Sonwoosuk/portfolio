@@ -30,3 +30,14 @@
   pointer-events: none;
   will-change: transform, opacity;
 }
+
+/* 모바일 — 큰 여백이 남지 않게 컴팩트한 놀이 구간 */
+@media (max-width: 768px) {
+  .playground {
+    height: 52vh;
+  }
+
+  .playground-hint {
+    font-size: clamp(1.7rem, 8vw, 2.6rem);
+  }
+}

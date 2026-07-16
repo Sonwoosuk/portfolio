@@ -54,6 +54,17 @@ export default function Landing() {
     const attempt = () => {
       ScrollTrigger.refresh()
       const smoother = ScrollSmoother.get()
+      // 모바일은 표가 핀 없이 바로 완성돼 있으므로 섹션 상단으로 이동
+      if (window.matchMedia('(max-width: 768px)').matches) {
+        const el = document.querySelector('.portfolio-chart')
+        if (smoother && el) {
+          smoother.scrollTo(el, false, 'top top')
+          window.history.replaceState(null, '')
+          return
+        }
+        if (tries++ < 20) id = setTimeout(attempt, 100)
+        return
+      }
       const st = ScrollTrigger.getAll().find(
         (t) => t.trigger?.classList?.contains('portfolio-chart') && t.pin,
       )

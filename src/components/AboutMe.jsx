@@ -22,7 +22,10 @@ export default function AboutMe() {
     const section = sectionRef.current
     if (!section) return
 
-    const ctx = gsap.context(() => {
+    const mm = gsap.matchMedia(section)
+
+    // 데스크톱 — 핀 + 워드필 + 프로필 슬라이드
+    mm.add('(min-width: 769px)', () => {
       const words = gsap.utils.toArray('.about-word')
       gsap.set(words, { opacity: 0.12, y: 16 })
       gsap
@@ -48,7 +51,7 @@ export default function AboutMe() {
           scrollTrigger: { trigger: section, start: 'top 85%' },
         },
       )
-      // 프로필 사진 — 페이드
+      // 프로필 사진 — 섹션이 화면에 완전히 들어와 고정된 뒤에 페이드 인
       gsap.fromTo(
         '.about-profile',
         { autoAlpha: 0 },
@@ -56,13 +59,21 @@ export default function AboutMe() {
           autoAlpha: 1,
           duration: 1,
           ease: 'power2.out',
-          scrollTrigger: { trigger: section, start: 'top 80%' },
+          scrollTrigger: { trigger: section, start: 'top top' },
         },
       )
-      // 프로필 사진 — 섹션 안에서 맨 위→제자리(하단)로 스크롤에 맞춰 내려옴
+      // 프로필 사진 — 섹션 안에서 위→제자리(하단)로 스크롤에 맞춰 내려옴.
+      // 시작 높이는 사진이 섹션 상단에 '통째로' 보이는 지점까지만 —
+      // 섹션 밖으로 잘려 얼굴이 반만 보이는 상태가 생기지 않게 함
       gsap.fromTo(
         '.about-profile',
-        { y: () => -(section.offsetHeight * 0.7) },
+        {
+          y: () => {
+            const profile = section.querySelector('.about-profile')
+            if (!profile) return 0
+            return -Math.max(0, profile.offsetTop - section.offsetHeight * 0.12)
+          },
+        },
         {
           y: 0,
           ease: 'none',
@@ -75,10 +86,45 @@ export default function AboutMe() {
           },
         },
       )
+    })
 
-    }, section)
+    // 모바일 — 핀·스크럽 없이 심플한 페이드만 (문장 → 프로필 순서대로)
+    mm.add('(max-width: 768px)', () => {
+      gsap.fromTo(
+        '.about-statement',
+        { autoAlpha: 0, y: 24 },
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.9,
+          ease: 'power2.out',
+          scrollTrigger: { trigger: section, start: 'top 75%' },
+        },
+      )
+      gsap.fromTo(
+        '.about-backdrop',
+        { autoAlpha: 0 },
+        {
+          autoAlpha: 0.22,
+          duration: 1.2,
+          ease: 'power2.out',
+          scrollTrigger: { trigger: section, start: 'top 75%' },
+        },
+      )
+      gsap.fromTo(
+        '.about-profile',
+        { autoAlpha: 0, y: 24 },
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.9,
+          ease: 'power2.out',
+          scrollTrigger: { trigger: '.about-profile', start: 'top 88%' },
+        },
+      )
+    })
 
-    return () => ctx.revert()
+    return () => mm.revert()
   }, [])
 
   return (

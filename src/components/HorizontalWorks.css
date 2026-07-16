@@ -75,3 +75,48 @@
   opacity: 1;
 }
 
+/* 모바일 — 가로 슬라이드 대신 제목 + 세로 스택 */
+@media (max-width: 768px) {
+  .horizontal-works {
+    height: auto;
+    padding: 12vh 6vw 10vh;
+  }
+
+  /* 초대형 아웃라인 텍스트 → 섹션 제목으로 */
+  .hw-bigtext {
+    position: static;
+    transform: none;
+    margin-bottom: 6vh;
+    font-size: 11.5vw;
+    line-height: 1.05;
+    white-space: normal;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.4);
+  }
+
+  .hw-track {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8vw;
+    width: 100%;
+    height: auto;
+    padding: 0;
+  }
+
+  .hw-panel,
+  .hw-panel:nth-child(even) {
+    width: 100%;
+    height: auto;
+    margin: 0;
+  }
+
+  .hw-panel img {
+    width: 100%;
+    height: auto;
+  }
+
+  /* 터치에서는 호버 스왑 컷 미사용 */
+  .hw-panel .hw-alt {
+    display: none;
+  }
+}
+

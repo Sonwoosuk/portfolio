@@ -82,6 +82,22 @@ export default function Epilogue() {
           },
         },
       )
+      // 한글 멘트 — 헤드라인 다음에 차분하게 떠오름
+      gsap.fromTo(
+        '.epilogue-ko',
+        { y: 30, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.9,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: wrap,
+            start: 'top 55%',
+            toggleActions: 'play none none reverse',
+          },
+        },
+      )
       gsap.fromTo(
         '.epilogue-contact li',
         { y: 50, opacity: 0 },
@@ -143,6 +159,9 @@ export default function Epilogue() {
             </span>
           ))}
         </h2>
+        <p className="epilogue-ko">
+          좋은 프로젝트를 시작하신다면, 같이 일하고 싶습니다.
+        </p>
         <p className="epilogue-line">START FROM THE BASICS, END UP DIFFERENT.</p>
         <ul className="epilogue-contact">
           {CONTACTS.map((c) => (

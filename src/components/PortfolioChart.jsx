@@ -62,6 +62,12 @@ export default function PortfolioChart() {
     const overlay = overlayRef.current
     if (!section || !overlay) return
 
+    // 모바일 — 물리 낙하·핀 연출 없이 완성된 표를 바로 보여줌 (심플)
+    if (window.matchMedia('(max-width: 768px)').matches) {
+      setAssembled(true)
+      return
+    }
+
     let killed = false
     let cleanup = () => {}
 
@@ -279,6 +285,8 @@ export default function PortfolioChart() {
       className={`portfolio-chart ${assembled ? 'is-assembled' : ''}`}
     >
       <div className="chart-inner">
+        {/* 모바일 전용 섹션 제목 */}
+        <h2 className="chart-title">포트폴리오</h2>
         <ul className="portfolio-rows">
           {PROJECTS.map((project, i) => (
             <li

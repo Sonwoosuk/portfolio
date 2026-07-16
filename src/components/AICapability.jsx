@@ -97,11 +97,12 @@ const ROWS = [
     ],
   },
 ]
+// mTop/mLeft — 모바일에서 화면 밖으로 잘리지 않는 좌표
 const PILLS = [
-  { text: 'Claude In The Loop', top: '22%', left: '64%', speed: 0.6 },
-  { text: 'Prompt To Product', top: '45%', left: '68%', speed: 1.5, accent: true },
-  { text: 'Idea To Launch, Fast', top: '58%', left: '8%', speed: 1 },
-  { text: 'Human Finish', top: '76%', left: '45%', speed: 1.9 },
+  { text: 'Claude In The Loop', top: '22%', left: '64%', mTop: '17%', mLeft: '8%', speed: 0.6 },
+  { text: 'Prompt To Product', top: '45%', left: '68%', mTop: '40%', mLeft: '42%', speed: 1.5, accent: true },
+  { text: 'Idea To Launch, Fast', top: '58%', left: '8%', mTop: '61%', mLeft: '6%', speed: 1 },
+  { text: 'Human Finish', top: '76%', left: '45%', mTop: '83%', mLeft: '48%', speed: 1.9 },
 ]
 
 // 카드가 아닌, 디자인 프로세스를 설명하는 에디토리얼 노트 — 이미지 자리를 대신함
@@ -120,6 +121,7 @@ function AINote({ tool }) {
         {tool.desc.map((line, i) => (
           <span key={line}>
             {i > 0 && <br />}
+            {i > 0 && ' '}
             {line}
           </span>
         ))}
@@ -135,8 +137,10 @@ export default function AICapability() {
     const section = sectionRef.current
     if (!section) return
 
-    const ctx = gsap.context(() => {
-      // 각 줄의 초대형 단어 — 홀짝 번갈아 좌우로 흐르는 패럴랙스
+    const mm = gsap.matchMedia(section)
+
+    // 각 줄의 초대형 단어 — 홀짝 번갈아 좌우로 흐르는 패럴랙스 (양쪽 공통, 절제된 이동)
+    const wordParallax = () => {
       gsap.utils.toArray('.ai-word').forEach((word, i) => {
         const dir = i % 2 ? -1 : 1
         gsap.fromTo(
@@ -154,6 +158,10 @@ export default function AICapability() {
           },
         )
       })
+    }
+
+    mm.add('(min-width: 769px)', () => {
+      wordParallax()
 
       // AI 노트 — 스크롤에 따라 하나씩 나타났다 다음으로 이어짐 (opacity + y + 약한 blur만)
       gsap.utils.toArray('.ai-note').forEach((note) => {
@@ -194,9 +202,46 @@ export default function AICapability() {
           },
         )
       })
-    }, section)
+    })
 
-    return () => ctx.revert()
+    // 모바일 — 노트는 스크럽·블러 없이 한 번 페이드 인, 알약은 회전 없이 약한 이동만
+    mm.add('(max-width: 768px)', () => {
+      wordParallax()
+
+      gsap.utils.toArray('.ai-note').forEach((note) => {
+        gsap.fromTo(
+          note,
+          { autoAlpha: 0, y: 14 },
+          {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.7,
+            ease: 'power2.out',
+            scrollTrigger: { trigger: note, start: 'top 85%' },
+          },
+        )
+      })
+
+      gsap.utils.toArray('.ai-pill').forEach((pill) => {
+        const speed = Number(pill.dataset.speed) || 1
+        gsap.fromTo(
+          pill,
+          { y: 36 * speed },
+          {
+            y: -36 * speed,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: section,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: true,
+            },
+          },
+        )
+      })
+    })
+
+    return () => mm.revert()
   }, [])
 
   return (
@@ -221,7 +266,7 @@ export default function AICapability() {
           key={p.text}
           className={`ai-pill ${p.accent ? 'is-accent' : ''}`}
           data-speed={p.speed}
-          style={{ top: p.top, left: p.left }}
+          style={{ top: p.top, left: p.left, '--m-top': p.mTop, '--m-left': p.mLeft }}
         >
           {p.text}
         </span>
