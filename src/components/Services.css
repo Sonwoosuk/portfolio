@@ -93,11 +93,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    gap: 3.5vh;
+    gap: 1.4vh;
     padding: 14vh 6vw 8vh;
   }
 
   .service-text {
+    /* 가로 배치용 flex: 1이 세로 배치에서는 텍스트 박스를 늘려
+       이미지와의 거리를 벌리므로 내용 높이만큼만 차지하게 */
+    flex: 0 0 auto;
     padding-right: 0;
     gap: 1.1rem;
   }

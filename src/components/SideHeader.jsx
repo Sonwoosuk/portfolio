@@ -16,6 +16,10 @@ const MENU = [
 
 export default function SideHeader() {
   const [open, setOpen] = useState(false)
+  // 모바일은 플레이그라운드 섹션이 렌더링되지 않으므로 메뉴에서도 제외
+  const menu = window.matchMedia('(max-width: 768px)').matches
+    ? MENU.filter((m) => m.label !== 'PLAYGROUND')
+    : MENU
 
   const toggle = () => {
     const next = !open
@@ -59,7 +63,7 @@ export default function SideHeader() {
 
       <nav className={`side-overlay ${open ? 'is-open' : ''}`} aria-hidden={!open}>
         <ul>
-          {MENU.map((m, i) => (
+          {menu.map((m, i) => (
             <li key={m.label} style={{ transitionDelay: `${0.05 + i * 0.05}s` }}>
               <button onClick={() => go(m.target)}>
                 <span className="menu-index">{String(i + 1).padStart(2, '0')}</span>

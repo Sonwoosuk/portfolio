@@ -97,12 +97,13 @@ const ROWS = [
     ],
   },
 ]
-// mTop/mLeft — 모바일에서 화면 밖으로 잘리지 않는 좌표
+// mTop — 모바일에서 노트 텍스트가 아닌 배경 대형 단어(1·3·5·7행) 위에 얹히는
+// 세로 좌표. 가로는 모바일에서 전부 왼쪽 7vw로 정렬(CSS에서 처리)
 const PILLS = [
-  { text: 'Claude In The Loop', top: '22%', left: '64%', mTop: '17%', mLeft: '8%', speed: 0.6 },
-  { text: 'Prompt To Product', top: '45%', left: '68%', mTop: '40%', mLeft: '42%', speed: 1.5, accent: true },
-  { text: 'Idea To Launch, Fast', top: '58%', left: '8%', mTop: '61%', mLeft: '6%', speed: 1 },
-  { text: 'Human Finish', top: '76%', left: '45%', mTop: '83%', mLeft: '48%', speed: 1.9 },
+  { text: 'Claude In The Loop', top: '22%', left: '64%', mTop: '12%', speed: 0.6 },
+  { text: 'Prompt To Product', top: '45%', left: '68%', mTop: '37%', speed: 1.5, accent: true },
+  { text: 'Idea To Launch, Fast', top: '58%', left: '8%', mTop: '62%', speed: 1 },
+  { text: 'Human Finish', top: '76%', left: '45%', mTop: '87%', speed: 1.9 },
 ]
 
 // 카드가 아닌, 디자인 프로세스를 설명하는 에디토리얼 노트 — 이미지 자리를 대신함
@@ -205,9 +206,8 @@ export default function AICapability() {
     })
 
     // 모바일 — 노트는 스크럽·블러 없이 한 번 페이드 인, 알약은 회전 없이 약한 이동만
+    // 단어 좌우 패럴랙스는 왼쪽 정렬 선을 흐트러뜨리므로 모바일에서는 미적용
     mm.add('(max-width: 768px)', () => {
-      wordParallax()
-
       gsap.utils.toArray('.ai-note').forEach((note) => {
         gsap.fromTo(
           note,
@@ -266,7 +266,7 @@ export default function AICapability() {
           key={p.text}
           className={`ai-pill ${p.accent ? 'is-accent' : ''}`}
           data-speed={p.speed}
-          style={{ top: p.top, left: p.left, '--m-top': p.mTop, '--m-left': p.mLeft }}
+          style={{ top: p.top, left: p.left, '--m-top': p.mTop }}
         >
           {p.text}
         </span>

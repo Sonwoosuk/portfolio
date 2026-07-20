@@ -37,6 +37,8 @@ export default function Landing() {
   // 작품 세부에서 INDEX로 돌아온 경우 — 로더 없이 포트폴리오 표로 바로 복귀
   const { state } = useLocation()
   const fromWork = Boolean(state?.fromWork)
+  // 모바일은 커서가 없어 이미지 트레일 놀이가 성립하지 않으므로 플레이그라운드 제외
+  const isMobile = window.matchMedia('(max-width: 768px)').matches
 
   useLayoutEffect(() => {
     const smoother = ScrollSmoother.create({ smooth: 1.2, effects: false })
@@ -114,7 +116,7 @@ export default function Landing() {
               <HorizontalWorks />
               <ColumnGallery />
               <PortfolioChart />
-              <Playground />
+              {!isMobile && <Playground />}
               <Epilogue />
             </>
           )}
