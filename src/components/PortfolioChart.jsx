@@ -48,6 +48,11 @@ const PROJECTS = [
   },
 ]
 
+// 터치 기기 — 호버가 없으므로 첫 탭은 호버 연출, 두 번째 탭에 이동
+const isTouch =
+  typeof window !== 'undefined' &&
+  window.matchMedia('(hover: none), (pointer: coarse)').matches
+
 export default function PortfolioChart() {
   const navigate = useNavigate()
   const sectionRef = useRef(null)
@@ -55,6 +60,7 @@ export default function PortfolioChart() {
   const titleRefs = useRef([])
   const [assembled, setAssembled] = useState(false)
   const [active, setActive] = useState(0)
+  const [touched, setTouched] = useState(-1)
   const scrollActiveRef = useRef(0)
 
   useEffect(() => {
@@ -291,9 +297,19 @@ export default function PortfolioChart() {
           {PROJECTS.map((project, i) => (
             <li
               key={project.title}
-              className={i === active ? 'is-active' : ''}
+              className={`${i === active ? 'is-active' : ''} ${
+                i === touched ? 'is-touch-hover' : ''
+              }`}
               onMouseEnter={() => setActive(i)}
-              onClick={() => navigate(`/works/${project.slug}`)}
+              onClick={() => {
+                // 터치: 첫 탭은 마퀴·미리보기만 보여주고, 같은 행을 한 번 더 탭하면 이동
+                if (isTouch && touched !== i) {
+                  setTouched(i)
+                  setActive(i)
+                  return
+                }
+                navigate(`/works/${project.slug}`)
+              }}
             >
               <span className="row-index">{String(i + 1).padStart(2, '0')}</span>
               <span

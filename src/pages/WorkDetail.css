@@ -593,8 +593,50 @@
 
 /* 폰 — 본문 행간·간격을 화면에 맞게 조정 */
 @media (max-width: 560px) {
+  /* 상단 바 — 좁은 폭에서 라벨은 생략하고 INDEX·VISIT LIVE가 한 줄로 */
+  .wd-top {
+    padding: 0.9rem 1.2rem;
+    font-size: 0.95rem;
+  }
+
+  .wd-top-label {
+    display: none;
+  }
+
+  .wd-top a {
+    white-space: nowrap;
+  }
+
+  .wd-top a.wd-visit {
+    padding: 0.55em 1.1em;
+  }
+
   .wd-meta {
     grid-template-columns: 1fr;
+  }
+
+  .wd-meta p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+  }
+
+  /* 개요 표 — 라벨 칸이 값 영역을 좁혀 어색하게 꺾이므로 위아래로 쌓음 */
+  .wd-overview {
+    gap: 1.1rem;
+  }
+
+  .wd-overview div {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+
+  .wd-overview dt {
+    padding-top: 0;
+  }
+
+  .wd-overview dd {
+    font-size: 1.05rem;
+    line-height: 1.6;
   }
 
   .wd-desc {

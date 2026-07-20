@@ -71,7 +71,8 @@
   transition: opacity 0.35s ease;
 }
 
-.hw-panel:hover .hw-alt {
+.hw-panel:hover .hw-alt,
+.hw-panel.is-touch-hover .hw-alt {
   opacity: 1;
 }
 
@@ -114,9 +115,6 @@
     height: auto;
   }
 
-  /* 터치에서는 호버 스왑 컷 미사용 */
-  .hw-panel .hw-alt {
-    display: none;
-  }
+  /* 터치에서는 탭할 때마다 스왑 컷을 켜고 끔 (.is-touch-hover 토글) */
 }
 

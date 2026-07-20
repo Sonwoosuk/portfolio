@@ -42,7 +42,8 @@
   transition: max-width 0.35s ease var(--d, 0s);
 }
 
-.manifesto-line:hover .m-letter::after {
+.manifesto-line:hover .m-letter::after,
+.manifesto-line.is-touch-hover .m-letter::after {
   max-width: 1.2ch;
 }
 

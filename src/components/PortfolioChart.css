@@ -113,16 +113,20 @@
   animation: row-marquee-scroll 14s linear infinite;
 }
 
-/* 호버 시 원본 제목·번호는 즉시 숨기고 마퀴만 표시 — 두 텍스트가 겹치지 않음 */
+/* 호버(또는 터치 첫 탭) 시 원본 제목·번호는 즉시 숨기고 마퀴만 표시 — 두 텍스트가 겹치지 않음 */
 .is-assembled .portfolio-rows li:hover .row-title,
 .is-assembled .portfolio-rows li:hover .row-tags,
-.is-assembled .portfolio-rows li:hover .row-index {
+.is-assembled .portfolio-rows li:hover .row-index,
+.is-assembled .portfolio-rows li.is-touch-hover .row-title,
+.is-assembled .portfolio-rows li.is-touch-hover .row-tags,
+.is-assembled .portfolio-rows li.is-touch-hover .row-index {
   opacity: 0;
   visibility: hidden;
   transition: none;
 }
 
-.is-assembled .portfolio-rows li:hover .row-marquee {
+.is-assembled .portfolio-rows li:hover .row-marquee,
+.is-assembled .portfolio-rows li.is-touch-hover .row-marquee {
   opacity: 1;
   visibility: visible;
 }
@@ -184,9 +188,18 @@
   will-change: transform;
 }
 
-/* 모바일 전용 섹션 제목 — 데스크톱에선 숨김 */
+/* 섹션 제목 — 데스크톱: 표와 겹치지 않는 우상단(미리보기 위 여백)에 크게,
+   섹션 색 전환(흰→레드)을 그대로 따름. absolute라 표 물리 연출 측정에 영향 없음 */
 .chart-title {
-  display: none;
+  position: absolute;
+  top: 5vh;
+  right: 4vw;
+  z-index: 1;
+  margin: 0;
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1;
 }
 
 /* 태블릿·모바일 — 미리보기를 위로 올리고 표는 아래에 세로로 */
@@ -234,10 +247,11 @@
   }
 
   .chart-title {
+    position: static;
     display: block;
     order: -2;
     margin: 0;
-    font-size: clamp(1.6rem, 7.5vw, 2.2rem);
+    font-size: clamp(2rem, 9.5vw, 2.8rem);
     font-weight: 800;
     letter-spacing: -0.02em;
   }
@@ -247,7 +261,12 @@
     opacity: 1;
   }
 
+  /* 첫 탭한 행만 마퀴 표시 — 두 번째 탭에 세부 페이지로 이동 */
   .row-marquee {
     display: none;
+  }
+
+  .portfolio-rows li.is-touch-hover .row-marquee {
+    display: flex;
   }
 }

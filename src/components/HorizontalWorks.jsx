@@ -8,6 +8,11 @@ gsap.registerPlugin(ScrollTrigger)
 // 가로 스크롤 갤러리 — 이미지 교체 지점: public/gallery-1.jpg ~ gallery-6.jpg
 const PANELS = Array.from({ length: 6 }, (_, i) => `/gallery-${i + 1}.jpg`)
 
+// 터치 기기 — 호버 스왑 대신 탭할 때마다 컷을 교체하고 되돌림
+const isTouch =
+  typeof window !== 'undefined' &&
+  window.matchMedia('(hover: none), (pointer: coarse)').matches
+
 export default function HorizontalWorks() {
   const sectionRef = useRef(null)
   const trackRef = useRef(null)
@@ -66,7 +71,15 @@ export default function HorizontalWorks() {
       </div>
       <div ref={trackRef} className="hw-track">
         {PANELS.map((src, i) => (
-          <figure key={src} className="hw-panel">
+          <figure
+            key={src}
+            className="hw-panel"
+            onClick={
+              isTouch
+                ? (e) => e.currentTarget.classList.toggle('is-touch-hover')
+                : undefined
+            }
+          >
             <img src={src} alt="" />
             {/* 호버하면 다른 컷으로 교체 (serotonin의 이미지 스왑) */}
             <img className="hw-alt" src={`/grid-${i + 15}.jpg`} alt="" />

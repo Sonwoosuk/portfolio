@@ -8,6 +8,11 @@ gsap.registerPlugin(ScrollTrigger)
 // 선언 문구 교체 지점 — 호버하면 글자가 두 겹으로 벌어지는 글리치(ilcapo 참고)
 const LINES = ['KEEP THE BASICS', 'BREAK THE SAME']
 
+// 터치 기기 — 호버 대신 탭할 때마다 벌어짐을 켜고 끔
+const isTouch =
+  typeof window !== 'undefined' &&
+  window.matchMedia('(hover: none), (pointer: coarse)').matches
+
 export default function Manifesto() {
   const sectionRef = useRef(null)
 
@@ -46,7 +51,15 @@ export default function Manifesto() {
   return (
     <section ref={sectionRef} className="manifesto">
       {LINES.map((line) => (
-        <h2 key={line} className="manifesto-line">
+        <h2
+          key={line}
+          className="manifesto-line"
+          onClick={
+            isTouch
+              ? (e) => e.currentTarget.classList.toggle('is-touch-hover')
+              : undefined
+          }
+        >
           {line.split('').map((ch, i) =>
             ch === ' ' ? (
               <span key={i} className="m-space"> </span>
