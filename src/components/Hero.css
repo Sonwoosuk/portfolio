@@ -38,3 +38,24 @@
   pointer-events: none;
   user-select: none;
 }
+
+/* 모바일 — 3D 캔버스를 렌더링하지 않으므로 그 자리를 대신하는 어두운 배경 */
+@media (max-width: 768px) {
+  .hero {
+    background: #0a0a0a;
+  }
+
+  .hero-mobile-brand {
+    position: absolute;
+    left: 4vw;
+    top: 42%;
+    transform: translateY(-50%);
+    max-width: 80vw;
+    font-size: clamp(2rem, 9vw, 3rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: #fff;
+    user-select: none;
+  }
+}

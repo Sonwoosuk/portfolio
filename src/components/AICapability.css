@@ -150,11 +150,9 @@
     padding: 5vh 0 6vh;
   }
 
-  /* 대형 단어 — 중앙 정렬이면 nowrap 오버플로 탓에 시작점이 제각각으로 보이므로
-     왼쪽 정렬로 고정 (넘치는 부분은 행의 overflow: hidden이 잘라냄) */
+  /* 대형 톤온톤 배경 단어 — 좁은 화면에서는 노트 텍스트와 겹쳐 읽기 방해가 되므로 숨김 */
   .ai-word {
-    text-align: left;
-    padding-left: 7vw;
+    display: none;
   }
 
   /* 노트를 글자 위 겹침에서 빼서 단어 아래 자기 자리로 — 텍스트 겹침 방지

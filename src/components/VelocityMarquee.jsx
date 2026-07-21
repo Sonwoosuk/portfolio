@@ -13,12 +13,16 @@ export default function VelocityMarquee({ items = ['THE STUDIO WAVE'], baseSpeed
     const track = trackRef.current
     if (!track) return
 
+    // 모바일 — 터치 플릭 스크롤은 속도값이 훨씬 커서 그대로 쓰면 마퀴가 과하게 빨라짐
+    const isMobile = window.matchMedia('(max-width: 768px)').matches
+    const speed = isMobile ? baseSpeed * 0.5 : baseSpeed
     let x = 0
     let skew = 0
     let velocity = 0
     const wrapX = gsap.utils.wrap(-50, 0)
     const clampBoost = gsap.utils.clamp(-30, 30)
     const clampSkew = gsap.utils.clamp(-15, 15)
+    const boostDivisor = isMobile ? 320 : 120
 
     const st = ScrollTrigger.create({
       onUpdate: (self) => {
@@ -28,7 +32,7 @@ export default function VelocityMarquee({ items = ['THE STUDIO WAVE'], baseSpeed
 
     const tick = (time, deltaTime) => {
       const dt = deltaTime / 1000
-      x = wrapX(x - (baseSpeed + clampBoost(velocity / 120)) * dt)
+      x = wrapX(x - (speed + clampBoost(velocity / boostDivisor)) * dt)
       skew += (clampSkew(velocity / 350) - skew) * 0.1
       velocity *= 0.92
       gsap.set(track, { xPercent: x, skewX: skew })
@@ -49,7 +53,7 @@ export default function VelocityMarquee({ items = ['THE STUDIO WAVE'], baseSpeed
         items.map((item, i) => (
           <span key={`${r}-${i}`} className="vm-item">
             <span className={(r * items.length + i) % 2 ? 'vm-outline' : ''}>{item}</span>
-            <span className="vm-star">✳</span>
+            <span className="vm-star">{'✳︎'}</span>
           </span>
         )),
       )}

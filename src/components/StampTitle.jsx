@@ -53,7 +53,7 @@ export default function StampTitle({ text }) {
 
   return (
     <div ref={ref} className="stamp-title" aria-hidden="true">
-      <span className="stamp-star">✳</span>
+      <span className="stamp-star">{'✳︎'}</span>
       {text}
     </div>
   )

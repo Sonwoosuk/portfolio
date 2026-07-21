@@ -44,7 +44,7 @@ export default function SideHeader() {
           aria-label="맨 위로"
           onClick={() => go(0)}
         >
-          ✳
+          {'✳︎'}
         </button>
         <button
           className={`side-menu-btn ${open ? 'is-open' : ''}`}
