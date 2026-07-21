@@ -80,10 +80,8 @@ export default function WorkDetail() {
       }
 
       // 피날레 — 프레임이 화면을 꽉 채울 때까지 커지고, 다 차면 라이브 사이트 활성화
-      // 모바일에서는 실사이트를 iframe으로 그대로 로딩하는 연출이 무겁고 핀도 불안정해 생략
-      const finale = window.matchMedia('(max-width: 768px)').matches
-        ? null
-        : root.querySelector('.wd-finale')
+      // 모바일에서는 섹션 자체를 렌더링하지 않으므로 querySelector가 null을 반환해 자동으로 생략됨
+      const finale = root.querySelector('.wd-finale')
       if (finale) {
         gsap
           .timeline({
@@ -273,20 +271,18 @@ export default function WorkDetail() {
         </section>
       )}
 
-      {/* 피날레 — 데스크톱은 화면을 꽉 채우면 라이브 사이트가 그대로 로딩,
-          모바일은 무거운 iframe 없이 정적 스냅샷 + 진입 버튼만 */}
-      {work.live && (
-        <section className={`wd-finale ${isMobile ? 'wd-reveal' : ''}`}>
+      {/* 피날레 — 화면을 꽉 채우면 라이브 사이트가 그대로 로딩.
+          모바일은 위 VISIT LIVE 버튼과 중복되고 iframe도 무거워 섹션 자체를 생략 */}
+      {work.live && !isMobile && (
+        <section className="wd-finale">
           <div className="wd-finale-frame">
             <img src={work.hero} alt="" className="wd-finale-shot" />
-            {!isMobile && (
-              <iframe
-                src={work.live}
-                title={work.title}
-                loading="lazy"
-                className="wd-finale-live"
-              />
-            )}
+            <iframe
+              src={work.live}
+              title={work.title}
+              loading="lazy"
+              className="wd-finale-live"
+            />
             <a
               href={work.live}
               target="_blank"
@@ -296,9 +292,7 @@ export default function WorkDetail() {
               ENTER REAL SITE ↗
             </a>
           </div>
-          {!isMobile && (
-            <span className="wd-finale-hint">[ KEEP SCROLLING — LOADING LIVE SITE ]</span>
-          )}
+          <span className="wd-finale-hint">[ KEEP SCROLLING — LOADING LIVE SITE ]</span>
         </section>
       )}
 

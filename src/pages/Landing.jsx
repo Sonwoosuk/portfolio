@@ -24,6 +24,10 @@ import Playground from '../components/Playground'
 import Epilogue from '../components/Epilogue'
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother)
+// 모바일 — 스크롤 중 주소창이 접히고 펼쳐질 때마다 발생하는 resize 이벤트를 무시.
+// 이 이벤트로 핀 구간이 잘못된 시점에 재계산되면 핀이 중간에 풀리거나
+// 스크롤이 반쯤 올라가다 멈추는 등 오작동이 생긴다.
+ScrollTrigger.config({ ignoreMobileResize: true })
 
 // 포트폴리오 랜딩 (원페이지)
 // 인트로 → 브랜드 마퀴 → 어바웃미(워드필) → 매니페스토(글리치) → 스킬 룰렛
