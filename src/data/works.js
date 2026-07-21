@@ -105,7 +105,7 @@ export const WORKS = [
     slug: 'landing',
     index: '03',
     title: 'LANDING PAGE DESIGN',
-    tags: ['Interaction', 'GSAP ScrollTrigger', 'React', 'Motion'],
+    tags: ['Interaction', 'GSAP ScrollTrigger', 'React', 'Motion', 'Not Responsive'],
     hero: '/works/landing/hero.jpg',
     live: 'https://facade-beryl.vercel.app',
     intro:
@@ -233,7 +233,7 @@ export const WORKS = [
     slug: 'trip',
     index: '06',
     title: 'VISIT JAPAN LANDING PAGE',
-    tags: ['Interaction', 'GSAP ScrollTrigger', 'React', 'i18n'],
+    tags: ['Interaction', 'GSAP ScrollTrigger', 'React', 'i18n', 'Not Responsive'],
     hero: '/works/trip/hero.jpg',
     live: 'https://trip-theta-two.vercel.app',
     intro:

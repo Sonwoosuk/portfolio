@@ -152,7 +152,7 @@ export default function WorkDetail() {
           <span className="wd-label">[ WORK {work.index} ]</span>
           <ul className="wd-tags">
             {work.tags.map((t) => (
-              <li key={t} className={/kakao/i.test(t) ? 'wd-tag-featured' : undefined}>
+              <li key={t} className={/kakao|not responsive/i.test(t) ? 'wd-tag-featured' : undefined}>
                 {t}
               </li>
             ))}
