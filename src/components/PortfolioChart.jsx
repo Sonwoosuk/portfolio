@@ -12,7 +12,7 @@ gsap.registerPlugin(ScrollTrigger)
 const PROJECTS = [
   {
     title: 'RAKKOJAE REDESIGN',
-    tags: 'UX/UI • React • Responsive • Firebase',
+    tags: 'UX/UI • HTML/CSS/JS • Firebase • Kakao Maps',
     image: '/work-1.jpg',
     slug: 'rakkojae',
   },
