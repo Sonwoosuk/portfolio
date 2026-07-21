@@ -151,11 +151,19 @@ export default function WorkDetail() {
         <div className="wd-intro-left">
           <span className="wd-label">[ WORK {work.index} ]</span>
           <ul className="wd-tags">
-            {work.tags.map((t) => (
-              <li key={t} className={/kakao|not responsive/i.test(t) ? 'wd-tag-featured' : undefined}>
-                {t}
-              </li>
-            ))}
+            {work.tags.map((t) => {
+              const cls =
+                /kakao/i.test(t) || t === '반응형 미지원'
+                  ? 'wd-tag-featured'
+                  : t === '반응형 지원'
+                    ? 'wd-tag-responsive'
+                    : undefined
+              return (
+                <li key={t} className={cls}>
+                  {t}
+                </li>
+              )
+            })}
           </ul>
           {work.intro && <p className="wd-desc">{work.intro}</p>}
           {work.pending && <p className="wd-pending">[ CONTENT IN PREPARATION ]</p>}

@@ -145,10 +145,18 @@
   border-radius: 999px;
 }
 
-/* 카카오맵 API 연동 강조 — 레드 필로 부각 */
+/* 카카오맵 API 연동 · 반응형 미지원 경고 — 레드 필로 부각 */
 .wd-tags li.wd-tag-featured {
   background: #e8352a;
   border-color: #e8352a;
+  color: #fff;
+  font-weight: 700;
+}
+
+/* 반응형 지원 — 그린 필로 긍정적 강조 */
+.wd-tags li.wd-tag-responsive {
+  background: #1f8a4c;
+  border-color: #1f8a4c;
   color: #fff;
   font-weight: 700;
 }
