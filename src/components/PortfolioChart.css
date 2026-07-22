@@ -188,12 +188,12 @@
   will-change: transform;
 }
 
-/* 섹션 제목 — 데스크톱: 표와 겹치지 않는 우상단(미리보기 위 여백)에 크게,
+/* 섹션 제목 — 데스크톱: 표와 겹치지 않는 좌상단에 크게,
    섹션 색 전환(흰→레드)을 그대로 따름. absolute라 표 물리 연출 측정에 영향 없음 */
 .chart-title {
   position: absolute;
   top: 5vh;
-  right: 4vw;
+  left: 4vw;
   z-index: 1;
   margin: 0;
   font-size: clamp(3rem, 6vw, 5.5rem);

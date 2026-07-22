@@ -2,7 +2,7 @@ import { useId } from 'react'
 import './RotatingBadge.css'
 
 // 빙글빙글 도는 스티커 뱃지 (cyphr.studio의 스티커 요소 참고)
-export default function RotatingBadge({ text = 'THE STUDIO WAVE ✳︎ PORTFOLIO ✳︎ ' }) {
+export default function RotatingBadge({ text = 'THE STUDIO WAVE * PORTFOLIO * ' }) {
   const pathId = useId()
   return (
     <div className="rotating-badge" aria-hidden="true">
