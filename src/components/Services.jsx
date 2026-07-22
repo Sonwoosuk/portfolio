@@ -48,10 +48,13 @@ export default function Services() {
       const cards = gsap.utils.toArray('.service-card')
       cards.forEach((card, i) => {
         // 카드를 화면에 고정하고 다음 카드가 그 위로 미끄러져 쌓임
+        // 구간 길이는 카드의 실제 렌더링 높이(card.offsetHeight)로 계산 —
+        // 모바일에서 CSS 100vh가 JS window.innerHeight보다 커지는 경우가 있어,
+        // innerHeight로 계산하면 카드가 화면을 다 덮기 전에 구간이 끝나버린다.
         ScrollTrigger.create({
           trigger: card,
           start: 'top top',
-          end: () => `+=${(cards.length - 1 - i) * window.innerHeight}`,
+          end: () => `+=${(cards.length - 1 - i) * card.offsetHeight}`,
           pin: true,
           pinSpacing: false,
           invalidateOnRefresh: true,
